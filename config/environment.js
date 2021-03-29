@@ -6,6 +6,8 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    supabaseUrl: process.env.SUPABASE_URL,
+    supabaseKey: process.env.SUPABASE_KEY,
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
