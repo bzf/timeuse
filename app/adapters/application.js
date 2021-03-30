@@ -21,6 +21,10 @@ export default class ApplicationAdapter extends RESTAdapter {
     return `${this.buildURL(modelName)}?id=eq.${id}`;
   }
 
+  urlForDeleteRecord(id, modelName) {
+    return `${this.buildURL(modelName)}?id=eq.${id}`;
+  }
+
   get headers() {
     return {
       apikey: ENV.supabaseKey,
