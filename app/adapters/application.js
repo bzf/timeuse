@@ -26,11 +26,20 @@ export default class ApplicationAdapter extends RESTAdapter {
   }
 
   get headers() {
-    return {
-      apikey: ENV.supabaseKey,
-      Authorization: `Bearer ${ENV.supabaseKey}`,
-      'Content-Type': 'application/json',
-      prefer: 'return=representation',
-    };
+    if (this.supabase.isAuthenticated) {
+      return {
+        apikey: ENV.supabaseKey,
+        Authorization: `Bearer ${this.supabase.currentSession.access_token}`,
+        'Content-Type': 'application/json',
+        prefer: 'return=representation',
+      };
+    } else {
+      return {
+        apikey: ENV.supabaseKey,
+        Authorization: `Bearer ${ENV.supabaseKey}`,
+        'Content-Type': 'application/json',
+        prefer: 'return=representation',
+      };
+    }
   }
 }
