@@ -1,0 +1,21 @@
+<div class='border-b absolute w-full h-16 z-0'></div>
+
+<div class='flex'>
+  <div class='flex-1 z-10'>
+    <Input
+      @placeholder='What are you working on?'
+      class='text-lg font-light w-full pt-4 px-6 outline-none'
+    />
+  </div>
+
+  <div
+    class='px-6 py-4 z-10 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500'
+  >
+    <button
+      type='button'
+      class='bg-gradient-to-tr from-pink-400 to-red-400 hover:from-pink-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-red-500 cursor-pointer rounded-full w-16 h-16 text-white shadow-xl'
+    >
+      <FaIcon @icon='play' @size='lg' />
+    </button>
+  </div>
+</div>
