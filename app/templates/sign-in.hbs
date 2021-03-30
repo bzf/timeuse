@@ -1,0 +1,51 @@
+<div style='width: 480px;' class='mx-auto mt-12 mb-24'>
+  <div class='flex justify-end items-center mb-24'>
+    <button class='bg-black hidden text-white rounded px-3 py-2'>
+      Sign up
+    </button>
+  </div>
+
+  <div>
+    <span class='hidden'>
+      Start for free
+    </span>
+
+    <h2 class='text-4xl font-semibold mb-6'>
+      Create an account
+    </h2>
+
+    <form {{on 'submit' this.signIn}}>
+      <div class='flex flex-col mb-4'>
+        <label for='email' class='uppercase font-semibold text-xs mb-1'>
+          Email
+        </label>
+
+        <Input
+          @id='email'
+          @type='email'
+          @value={{this.email}}
+          class='border-2 rounded outline-none focus:border-black text-lg px-3 py-2'
+        />
+      </div>
+
+      <div class='flex flex-col mb-8'>
+        <label for='password' class='uppercase font-semibold text-xs mb-1'>
+          password
+        </label>
+
+        <Input
+          @id='password'
+          @type='password'
+          @value={{this.password}}
+          class='border-2 rounded outline-none focus:border-black text-lg px-3 py-2'
+        />
+      </div>
+
+      <Input
+        @type='submit'
+        class='w-full text-lg py-3 cursor-pointer rounded font-medium bg-black text-white'
+        @value='Sign in'
+      />
+    </form>
+  </div>
+</div>
