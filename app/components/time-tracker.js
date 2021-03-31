@@ -36,7 +36,16 @@ export default class extends Component {
     this.currentTimer.stop();
     await this.currentTimer.save();
 
-    this.currentTimer = null;
+    this.currentTimer = this.store.createRecord('timer');
+  }
+
+  @action
+  async saveTimer() {
+    if (this.currentTimer.isNew) {
+      return;
+    }
+
+    await this.currentTimer.save();
   }
 
   @action

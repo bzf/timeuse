@@ -2,7 +2,7 @@ import Model, { attr } from '@ember-data/model';
 import { isEmpty, isPresent } from '@ember/utils';
 
 export default class TimerModel extends Model {
-  @attr('string') name;
+  @attr('string') title;
   @attr('date') startTimestamp;
   @attr('date') endTimestamp;
 

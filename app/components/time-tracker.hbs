@@ -9,7 +9,9 @@
     <div class='flex-1 flex items-center z-10 px-6'>
       <Input
         @placeholder='What are you working on?'
-        class='text-lg font-light w-full outline-none'
+        @value={{this.currentTimer.title}}
+        class='text-lg font-light w-full outline-none z-10'
+        {{on 'blur' this.saveTimer}}
       />
 
       {{#if this.currentTimer.isRunning}}
