@@ -1,10 +1,43 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { dropTask } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 
 export default class extends Component {
+  @service store;
+
   @tracked currentTime = new Date();
-  @tracked startTime = new Date();
+  @tracked currentTimer = null;
+
+  @dropTask
+  *setupCurrentTimer() {
+    const currentTimers = yield this.store.query('timer', {
+      end_timestamp: 'is.null',
+      start_timestamp: 'not.is.null',
+    });
+
+    this.currentTimer = currentTimers.firstObject;
+  }
+
+  @action
+  async startTimer() {
+    if (isEmpty(this.currentTimer)) {
+      this.currentTimer = this.store.createRecord('timer');
+    }
+
+    this.currentTimer.start();
+    await this.currentTimer.save();
+  }
+
+  @action
+  async stopTimer() {
+    this.currentTimer.stop();
+    await this.currentTimer.save();
+
+    this.currentTimer = null;
+  }
 
   @action
   setupTimer() {
@@ -13,7 +46,9 @@ export default class extends Component {
 
   get timerText() {
     const totalDurationInSeconds = Math.round(
-      (this.currentTime.getTime() - this.startTime.getTime()) / 1000
+      (this.currentTime.getTime() -
+        Date.parse(this.currentTimer.startTimestamp)) /
+        1000
     );
 
     const hours = Math.floor(totalDurationInSeconds / 3600);
