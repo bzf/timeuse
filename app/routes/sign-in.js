@@ -9,4 +9,11 @@ export default class extends Route {
       this.transitionTo('authenticated.projects');
     }
   }
+
+  resetController(controller, isExiting) {
+    if (isExiting) {
+      controller.email = '';
+      controller.password = '';
+    }
+  }
 }
