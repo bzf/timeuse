@@ -7,6 +7,7 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
+  this.route('index', { path: '' });
   this.route('sign-in');
 
   this.route('authenticated', { path: '' }, function () {
