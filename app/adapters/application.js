@@ -17,6 +17,10 @@ export default class ApplicationAdapter extends RESTAdapter {
     return `${this.urlForFindAll(modelName)}?select=*&id=eq.${id}`;
   }
 
+  urlForCreateRecord(modelName) {
+    return this.buildURL(modelName);
+  }
+
   urlForUpdateRecord(id, modelName) {
     return `${this.buildURL(modelName)}?id=eq.${id}`;
   }
