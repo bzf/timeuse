@@ -6,7 +6,7 @@ export default class extends Route {
 
   beforeModel() {
     if (this.supabase.isAuthenticated) {
-      this.transitionTo('authenticated.projects');
+      this.transitionTo('authenticated.dashboard');
     }
   }
 

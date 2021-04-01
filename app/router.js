@@ -11,6 +11,6 @@ Router.map(function () {
   this.route('sign-in');
 
   this.route('authenticated', { path: '' }, function () {
-    this.route('projects');
+    this.route('dashboard', { resetNamespace: true });
   });
 });
