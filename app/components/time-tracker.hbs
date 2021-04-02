@@ -1,12 +1,10 @@
-<div class='border-b absolute w-full h-16 z-0'></div>
-
 <div
-  class='flex'
+  class='flex border-b items-center'
   {{did-insert this.setupTimer}}
   {{did-insert (perform this.setupCurrentTimer)}}
 >
-  <div class='flex-1 py-4'>
-    <div class='flex-1 flex items-center z-10 px-6'>
+  <div class='flex-1'>
+    <div class='flex-1 flex items-center pl-6'>
       <Input
         @placeholder='What are you working on?'
         @value={{this.currentTimer.title}}
@@ -15,7 +13,9 @@
       />
 
       {{#if this.currentTimer.isRunning}}
-        <span class='font-light tabular-nums uppercase text-lg text-gray-500'>
+        <span
+          class='font-light tabular-nums uppercase text-gray-700 text-md tracking-tighter font-semibold'
+        >
           {{this.timerText}}
         </span>
       {{/if}}
@@ -23,23 +23,23 @@
   </div>
 
   <div
-    class='px-6 py-4 z-10 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500'
+    class='px-6 py-4 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500'
   >
     {{#if this.currentTimer.isRunning}}
       <button
         type='button'
-        class='bg-gradient-to-tr from-pink-400 to-red-400 hover:from-pink-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-red-500 cursor-pointer rounded-full w-16 h-16 text-white shadow-xl'
+        class='bg-gradient-to-tr from-pink-400 to-red-400 hover:from-pink-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-red-500 cursor-pointer rounded-full w-10 h-10 text-white shadow-xl'
         {{on 'click' this.stopTimer}}
       >
-        <FaIcon @icon='stop' @size='lg' />
+        <FaIcon @icon='stop' @size='mid' />
       </button>
     {{else}}
       <button
         type='button'
-        class='bg-gradient-to-tr from-pink-400 to-red-400 hover:from-pink-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-red-500 cursor-pointer rounded-full w-16 h-16 text-white shadow-xl'
+        class='bg-gradient-to-tr from-green-400 to-green-500 hover:from-green-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-green-600 cursor-pointer rounded-full w-10 h-10 text-white shadow-xl'
         {{on 'click' this.startTimer}}
       >
-        <FaIcon @icon='play' @size='lg' />
+        <FaIcon @icon='play' @size='md' />
       </button>
     {{/if}}
   </div>
