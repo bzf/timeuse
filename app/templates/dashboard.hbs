@@ -1,7 +1,7 @@
 <ul>
   {{#each this.model as |timer|}}
     <li>
-      {{timer.title}} ({{timer.durationText}})
+      {{timer.title}} ({{format-duration timer.durationInSeconds}})
     </li>
   {{/each}}
 </ul>

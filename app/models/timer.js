@@ -2,8 +2,6 @@ import Model, { attr } from '@ember-data/model';
 import { isEmpty, isPresent } from '@ember/utils';
 import moment from 'moment';
 
-import formatDurationInSeconds from 'timeuse/utils/format-duration-in-seconds';
-
 export default class TimerModel extends Model {
   @attr('string') title;
   @attr('moment') startTimestamp;
@@ -19,10 +17,6 @@ export default class TimerModel extends Model {
 
   stop() {
     this.endTimestamp = new Date();
-  }
-
-  get durationText() {
-    return formatDurationInSeconds(this.durationInSeconds) || '';
   }
 
   get durationInSeconds() {
