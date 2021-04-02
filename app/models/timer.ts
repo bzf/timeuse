@@ -3,20 +3,20 @@ import { isEmpty, isPresent } from '@ember/utils';
 import moment from 'moment';
 
 export default class TimerModel extends Model {
-  @attr('string') title;
-  @attr('moment') startTimestamp;
-  @attr('moment') endTimestamp;
+  @attr title?: string;
+  @attr('moment') declare startTimestamp: moment.Moment;
+  @attr('moment') endTimestamp?: moment.Moment;
 
   get isRunning() {
     return isPresent(this.startTimestamp) && isEmpty(this.endTimestamp);
   }
 
   start() {
-    this.startTimestamp = new Date();
+    this.startTimestamp = moment();
   }
 
   stop() {
-    this.endTimestamp = new Date();
+    this.endTimestamp = moment();
   }
 
   get durationInSeconds() {
