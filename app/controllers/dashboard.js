@@ -1,9 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import moment from 'moment';
 import { inject as service } from '@ember/service';
-
-import DailyTimers from 'timeuse/models/daily-timers';
+import moment from 'moment';
 
 export default class extends Controller {
   @service('current-timer') timerService;
@@ -16,23 +14,6 @@ export default class extends Controller {
     return this.timerService.currentDuration;
   }
 
-  get timersGroupedByDate() {
-    const { model } = this;
-
-    const groupedTimers = model.reduce((acc, t) => {
-      const dateKey = moment(t.startTimestamp).format('YYYY-MM-DD');
-
-      acc[dateKey] ||= [];
-      acc[dateKey].push(t);
-
-      return acc;
-    }, {});
-
-    return Object.keys(groupedTimers).map(
-      (key) => new DailyTimers(key, groupedTimers[key])
-    );
-  }
-
   @action
   async startTimer() {
     await this.timerService.start();
@@ -41,7 +22,13 @@ export default class extends Controller {
   @action
   async stopTimer() {
     const stoppedTimer = await this.timerService.stop();
-    this.model.pushObject(stoppedTimer);
+
+    const dailyTimer = this.model.findBy(
+      'date',
+      moment(stoppedTimer.endTimestamp).format('YYYY-MM-DD')
+    );
+
+    dailyTimer._timers.pushObject(stoppedTimer);
   }
 
   @action

@@ -1,10 +1,16 @@
+import { tracked } from '@glimmer/tracking';
+
 export default class DailyTimers {
   date = null;
-  timers = [];
+  @tracked _timers = [];
 
   constructor(date, timers) {
     this.date = date;
-    this.timers = timers.sortBy('endTimestamp').reverse();
+    this._timers = timers;
+  }
+
+  get timers() {
+    return this._timers.sortBy('endTimestamp').rejectBy('isDeleted').reverse();
   }
 
   get totalDuration() {
