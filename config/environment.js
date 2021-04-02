@@ -8,6 +8,10 @@ module.exports = function (environment) {
     locationType: 'auto',
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
+    emberKeyboard: {
+      disableInputsInitializer: true,
+    },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
