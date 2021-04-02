@@ -1,7 +1,17 @@
-<ul>
-  {{#each this.model as |timer|}}
-    <li>
-      {{timer.title}} ({{format-duration timer.durationInSeconds}})
-    </li>
+<div class='bg-white w-full shadow-sm mb-12'>
+  <div
+    class='bg-white text-gray-900 text-sm py-4 flex px-4 border-b mb-2 border-gray-100'
+  >
+    <span class='font-semibold leading-tighter flex-1'>
+      Entries
+    </span>
+
+    <span class='font-semibold uppercase'>
+      {{format-duration this.totalDuration}}
+    </span>
+  </div>
+
+  {{#each this.timers as |timer|}}
+    <TimerEntry @timer={{timer}} />
   {{/each}}
-</ul>
+</div>
