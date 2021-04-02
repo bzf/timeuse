@@ -4,7 +4,7 @@
       <Input
         @placeholder='What are you working on?'
         @value={{@currentTimer.title}}
-        class='text-lg font-light w-full outline-none z-10'
+        class='text-lg font-light w-full outline-none'
         {{on-key 'Enter' @onStart}}
         {{on 'blur' @onSave}}
       />
