@@ -44,6 +44,8 @@ module('Acceptance | index', function (hooks) {
         findAll() {
           return [];
         }
+
+        createRecord() {}
       }
 
       this.owner.register('service:supabase', SupabaseStub);

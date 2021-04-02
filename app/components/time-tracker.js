@@ -9,6 +9,7 @@ import moment from 'moment';
 export default class extends Component {
   @service store;
 
+  @tracked title = '';
   @tracked currentTime = new Date();
   @tracked currentTimer = null;
 
@@ -20,14 +21,14 @@ export default class extends Component {
     });
 
     this.currentTimer = currentTimers.firstObject;
+
+    if (isEmpty(this.currentTimer)) {
+      this.currentTimer = this.store.createRecord('timer');
+    }
   }
 
   @action
   async startTimer() {
-    if (isEmpty(this.currentTimer)) {
-      this.currentTimer = this.store.createRecord('timer');
-    }
-
     this.currentTimer.start();
     await this.currentTimer.save();
   }
