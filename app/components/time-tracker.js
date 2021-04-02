@@ -29,6 +29,10 @@ export default class extends Component {
 
   @action
   async startTimer() {
+    if (this.currentTimer.isRunning) {
+      return;
+    }
+
     this.currentTimer.start();
     await this.currentTimer.save();
   }

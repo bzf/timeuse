@@ -9,6 +9,7 @@
         @placeholder='What are you working on?'
         @value={{this.currentTimer.title}}
         class='text-lg font-light w-full outline-none z-10'
+        {{on-key 'Enter' this.startTimer}}
         {{on 'blur' this.saveTimer}}
       />
 
