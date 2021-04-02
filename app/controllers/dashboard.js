@@ -1,16 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import moment from 'moment';
+import { inject as service } from '@ember/service';
 
 import DailyTimers from 'timeuse/models/daily-timers';
-import { inject as service } from '@ember/service';
 
 export default class extends Controller {
   @service('current-timer') timerService;
-
-  get currentDate() {
-    return moment().format('YYYY-MM-DD');
-  }
 
   get currentTimer() {
     return this.timerService.currentTimer;
@@ -38,12 +34,6 @@ export default class extends Controller {
   }
 
   @action
-  async deleteTimer(timer) {
-    this.model = this.model.rejectBy('id', timer.id);
-    await timer.destroyRecord();
-  }
-
-  @action
   async startTimer() {
     await this.timerService.start();
   }
@@ -57,5 +47,11 @@ export default class extends Controller {
   @action
   async saveTimer() {
     await this.timerService.save();
+  }
+
+  @action
+  async deleteTimer(timer) {
+    this.model = this.model.rejectBy('id', timer.id);
+    await timer.destroyRecord();
   }
 }

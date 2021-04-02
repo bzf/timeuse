@@ -1,0 +1,23 @@
+<div class='bg-white w-full shadow-sm mb-6'>
+  <div
+    class='bg-white text-gray-900 text-sm py-4 flex px-6 border-b border-gray-100'
+  >
+    <span class='font-semibold leading-tighter flex-1'>
+      {{#if (eq @dailyTimer.date this.currentDate)}}
+        Today
+      {{else}}
+        {{moment-format 'ddd DD, MMM' @dailyTimer.date}}
+      {{/if}}
+    </span>
+
+    <span class='font-semibold uppercase'>
+      {{format-duration @dailyTimer.totalDuration}}
+    </span>
+
+    <span class='w-8'></span>
+  </div>
+
+  {{#each @dailyTimer.timers as |timer|}}
+    <TimerEntry @timer={{timer}} @onDelete={{fn @onDelete timer}} />
+  {{/each}}
+</div>

@@ -6,28 +6,6 @@
   @onSave={{this.saveTimer}}
 />
 
-{{#each this.timersGroupedByDate as |dailyTimers|}}
-  <div class='bg-white w-full shadow-sm mb-6'>
-    <div
-      class='bg-white text-gray-900 text-sm py-4 flex px-6 border-b border-gray-100'
-    >
-      <span class='font-semibold leading-tighter flex-1'>
-        {{#if (eq dailyTimers.date this.currentDate)}}
-          Today
-        {{else}}
-          {{moment-format 'ddd DD, MMM' dailyTimers.date}}
-        {{/if}}
-      </span>
-
-      <span class='font-semibold uppercase'>
-        {{format-duration dailyTimers.totalDuration}}
-      </span>
-
-      <span class='w-8'></span>
-    </div>
-
-    {{#each dailyTimers.timers as |timer|}}
-      <TimerEntry @timer={{timer}} @onDelete={{fn this.deleteTimer timer}} />
-    {{/each}}
-  </div>
+{{#each this.timersGroupedByDate as |dailyTimer|}}
+  <DailyTimers @dailyTimer={{dailyTimer}} @onDelete={{this.deleteTimer}} />
 {{/each}}
