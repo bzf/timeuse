@@ -41,7 +41,11 @@ export default class extends Service {
     this.currentTimer.stop();
     await this.currentTimer.save();
 
+    const stoppedTimer = this.currentTimer;
+
     this.currentTimer = this.store.createRecord('timer');
+
+    return stoppedTimer;
   }
 
   async save() {

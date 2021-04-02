@@ -8,10 +8,6 @@ import { inject as service } from '@ember/service';
 export default class extends Controller {
   @service('current-timer') timerService;
 
-  get timers() {
-    return this.model;
-  }
-
   get currentDate() {
     return moment().format('YYYY-MM-DD');
   }
@@ -25,9 +21,9 @@ export default class extends Controller {
   }
 
   get timersGroupedByDate() {
-    const { timers } = this;
+    const { model } = this;
 
-    const groupedTimers = timers.reduce((acc, t) => {
+    const groupedTimers = model.reduce((acc, t) => {
       const dateKey = moment(t.startTimestamp).format('YYYY-MM-DD');
 
       acc[dateKey] ||= [];
@@ -54,7 +50,8 @@ export default class extends Controller {
 
   @action
   async stopTimer() {
-    await this.timerService.stop();
+    const stoppedTimer = await this.timerService.stop();
+    this.model.pushObject(stoppedTimer);
   }
 
   @action

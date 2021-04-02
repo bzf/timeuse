@@ -4,7 +4,7 @@ export default class DailyTimers {
 
   constructor(date, timers) {
     this.date = date;
-    this.timers = timers;
+    this.timers = timers.sortBy('endTimestamp').reverse();
   }
 
   get totalDuration() {
