@@ -2,6 +2,8 @@ import Model, { attr } from '@ember-data/model';
 import { isEmpty, isPresent } from '@ember/utils';
 import moment from 'moment';
 
+import formatDurationInSeconds from 'timeuse/utils/format-duration-in-seconds';
+
 export default class TimerModel extends Model {
   @attr('string') title;
   @attr('moment') startTimestamp;
@@ -20,20 +22,16 @@ export default class TimerModel extends Model {
   }
 
   get durationText() {
+    return formatDurationInSeconds(this.durationInSeconds) || '';
+  }
+
+  get durationInSeconds() {
     if (isEmpty(this.startTimestamp) || isEmpty(this.endTimestamp)) {
-      return '';
+      return null;
     }
 
-    const duration = moment.duration(
-      moment(this.endTimestamp).diff(this.startTimestamp)
-    );
-
-    const parts = [
-      String(duration.hours()),
-      String(duration.minutes()).padStart(2, '0'),
-      String(duration.seconds()).padStart(2, '0'),
-    ];
-
-    return parts.join(':');
+    return moment
+      .duration(moment(this.endTimestamp).diff(this.startTimestamp))
+      .as('seconds');
   }
 }
