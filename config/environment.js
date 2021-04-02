@@ -26,6 +26,7 @@ module.exports = function (environment) {
   };
 
   ENV['@sentry/ember'] = {
+    disablePerformance: environment !== 'production',
     sentry: {
       dsn: process.env.SENTRY_DSN,
       environment,
