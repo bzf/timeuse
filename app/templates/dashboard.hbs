@@ -1,3 +1,11 @@
+<TimeTracker
+  @currentTimer={{this.currentTimer}}
+  @currentDuration={{this.currentDuration}}
+  @onStart={{this.startTimer}}
+  @onStop={{this.stopTimer}}
+  @onSave={{this.saveTimer}}
+/>
+
 {{#each this.timersGroupedByDate as |dailyTimers|}}
   <div class='bg-white w-full shadow-sm mb-6'>
     <div

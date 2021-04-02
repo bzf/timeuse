@@ -3,17 +3,17 @@
     <div class='flex-1 flex items-center pl-6'>
       <Input
         @placeholder='What are you working on?'
-        @value={{this.currentTimer.title}}
+        @value={{@currentTimer.title}}
         class='text-lg font-light w-full outline-none z-10'
-        {{on-key 'Enter' this.startTimer}}
-        {{on 'blur' this.saveTimer}}
+        {{on-key 'Enter' @onStart}}
+        {{on 'blur' @onSave}}
       />
 
-      {{#if this.currentTimer.isRunning}}
+      {{#if @currentTimer.isRunning}}
         <span
           class='font-light tabular-nums uppercase text-gray-700 text-md tracking-tighter font-semibold'
         >
-          {{format-duration this.currentDuration}}
+          {{format-duration @currentDuration}}
         </span>
       {{/if}}
     </div>
@@ -22,11 +22,11 @@
   <div
     class='px-6 py-4 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500'
   >
-    {{#if this.currentTimer.isRunning}}
+    {{#if @currentTimer.isRunning}}
       <button
         type='button'
         class='bg-gradient-to-tr from-pink-400 to-red-400 hover:from-pink-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-red-500 cursor-pointer rounded-full w-10 h-10 text-white shadow-xl'
-        {{on 'click' this.stopTimer}}
+        {{on 'click' @onStop}}
       >
         <FaIcon @icon='stop' @size='mid' />
       </button>
@@ -34,7 +34,7 @@
       <button
         type='button'
         class='bg-gradient-to-tr from-green-400 to-green-500 hover:from-green-500 transition-all duration-500 transform hover:scale-110 ease-in-out hover:to-green-600 cursor-pointer rounded-full w-10 h-10 text-white shadow-xl'
-        {{on 'click' this.startTimer}}
+        {{on 'click' @onStart}}
       >
         <FaIcon @icon='play' @size='md' />
       </button>

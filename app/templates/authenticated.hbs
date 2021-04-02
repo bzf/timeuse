@@ -1,9 +1,7 @@
 <div class='bg-gray-100 h-screen overflow-y-scroll'>
-  <TimeTracker />
+  {{outlet}}
 
   <button type='button' {{on 'click' this.signOut}}>
     Sign out
   </button>
-
-  {{outlet}}
 </div>
