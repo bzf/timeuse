@@ -1,7 +1,9 @@
-<TimeTracker />
+<div class='bg-gray-100 h-screen'>
+  <TimeTracker />
 
-<button {{on 'click' this.signOut}}>
-  Sign out
-</button>
+  <button type='button' {{on 'click' this.signOut}}>
+    Sign out
+  </button>
 
-{{outlet}}
+  {{outlet}}
+</div>
