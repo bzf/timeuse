@@ -1,10 +1,11 @@
 import Model, { attr } from '@ember-data/model';
 import { isEmpty, isPresent } from '@ember/utils';
+import moment from 'moment';
 
 export default class TimerModel extends Model {
   @attr('string') title;
-  @attr('date') startTimestamp;
-  @attr('date') endTimestamp;
+  @attr('moment') startTimestamp;
+  @attr('moment') endTimestamp;
 
   get isRunning() {
     return isPresent(this.startTimestamp) && isEmpty(this.endTimestamp);
@@ -19,18 +20,20 @@ export default class TimerModel extends Model {
   }
 
   get durationText() {
-    const totalDurationInSeconds = Math.round(
-      Date.parse(this.endTimestamp) / 1000 -
-        Date.parse(this.startTimestamp) / 1000
+    if (isEmpty(this.startTimestamp) || isEmpty(this.endTimestamp)) {
+      return '';
+    }
+
+    const duration = moment.duration(
+      moment(this.endTimestamp).diff(this.startTimestamp)
     );
 
-    const hours = Math.floor(totalDurationInSeconds / 3600);
-    const minutes = Math.floor((totalDurationInSeconds % 3600) / 60);
-    const seconds = totalDurationInSeconds % 60;
+    const parts = [
+      String(duration.hours()),
+      String(duration.minutes()).padStart(2, '0'),
+      String(duration.seconds()).padStart(2, '0'),
+    ];
 
-    return [hours, minutes, seconds]
-      .map((a) => String(a))
-      .map((a) => a.padStart(2, '0'))
-      .join(':');
+    return parts.join(':');
   }
 }
