@@ -1,13 +1,31 @@
 import Controller from '@ember/controller';
+import moment from 'moment';
+
+import DailyTimers from 'timeuse/models/daily-timers';
 
 export default class extends Controller {
   get timers() {
     return this.model;
   }
 
-  get totalDuration() {
-    return this.timers
-      .mapBy('durationInSeconds')
-      .reduce((acc, a) => acc + a, 0);
+  get currentDate() {
+    return moment().format('YYYY-MM-DD');
+  }
+
+  get timersGroupedByDate() {
+    const { timers } = this;
+
+    const groupedTimers = timers.reduce((acc, t) => {
+      const dateKey = moment(t.startTimestamp).format('YYYY-MM-DD');
+
+      acc[dateKey] ||= [];
+      acc[dateKey].push(t);
+
+      return acc;
+    }, {});
+
+    return Object.keys(groupedTimers).map(
+      (key) => new DailyTimers(key, groupedTimers[key])
+    );
   }
 }

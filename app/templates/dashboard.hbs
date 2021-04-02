@@ -1,17 +1,23 @@
-<div class='bg-white w-full shadow-sm mb-12'>
-  <div
-    class='bg-white text-gray-900 text-sm py-4 flex px-6 border-b mb-2 border-gray-100'
-  >
-    <span class='font-semibold leading-tighter flex-1'>
-      Entries
-    </span>
+{{#each this.timersGroupedByDate as |dailyTimers|}}
+  <div class='bg-white w-full shadow-sm mb-6'>
+    <div
+      class='bg-white text-gray-900 text-sm py-4 flex px-6 border-b mb-2 border-gray-100'
+    >
+      <span class='font-semibold leading-tighter flex-1'>
+        {{#if (eq dailyTimers.date this.currentDate)}}
+          Today
+        {{else}}
+          {{moment-format 'ddd DD, MMM' dailyTimers.date}}
+        {{/if}}
+      </span>
 
-    <span class='font-semibold uppercase'>
-      {{format-duration this.totalDuration}}
-    </span>
+      <span class='font-semibold uppercase'>
+        {{format-duration dailyTimers.totalDuration}}
+      </span>
+    </div>
+
+    {{#each dailyTimers.timers as |timer|}}
+      <TimerEntry @timer={{timer}} />
+    {{/each}}
   </div>
-
-  {{#each this.timers as |timer|}}
-    <TimerEntry @timer={{timer}} />
-  {{/each}}
-</div>
+{{/each}}
