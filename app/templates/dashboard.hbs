@@ -14,10 +14,12 @@
       <span class='font-semibold uppercase'>
         {{format-duration dailyTimers.totalDuration}}
       </span>
+
+      <span class='w-8'></span>
     </div>
 
     {{#each dailyTimers.timers as |timer|}}
-      <TimerEntry @timer={{timer}} />
+      <TimerEntry @timer={{timer}} @onDelete={{fn this.deleteTimer timer}} />
     {{/each}}
   </div>
 {{/each}}

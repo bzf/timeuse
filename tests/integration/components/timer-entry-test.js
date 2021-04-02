@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | timer-entry', function (hooks) {
@@ -42,5 +42,15 @@ module('Integration | Component | timer-entry', function (hooks) {
     await render(hbs`<TimerEntry @timer={{this.timer}} />`);
 
     assert.dom('[data-test-timestamp]').hasText('15:00 - 15:03');
+  });
+
+  test('clicking the trash icon calls the @onDelete action', async function (assert) {
+    assert.expect(1);
+
+    this.set('externalAction', () => assert.ok(true));
+
+    await render(hbs`<TimerEntry @onDelete={{this.externalAction}} />`);
+
+    await click('[data-test-delete-button]');
   });
 });

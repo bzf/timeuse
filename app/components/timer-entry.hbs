@@ -1,4 +1,4 @@
-<div class='px-6 hover:bg-gray-100 py-3 text-sm font-light flex'>
+<div class='group px-6 hover:bg-gray-100 py-3 text-sm font-light flex'>
   {{#if (is-present @timer.title)}}
     <span data-test-timer-title class='flex-1'>
       {{@timer.title}}
@@ -9,7 +9,7 @@
     </span>
   {{/if}}
 
-  <span data-test-timestamp class='tabular-nums mr-12'>
+  <span data-test-timestamp class='tabular-nums mr-8'>
     {{format-timestamp @timer.startTimestamp}} - {{format-timestamp
       @timer.endTimestamp
     }}
@@ -18,4 +18,14 @@
   <span data-test-duration class='tabular-nums'>
     {{format-duration @timer.durationInSeconds}}
   </span>
+
+  <div class='invisible group-hover:visible w-8 flex justify-end'>
+    <button
+      data-test-delete-button
+      type='button'
+      {{on 'click' (optional @onDelete)}}
+    >
+      <FaIcon @icon='trash' class='text-gray-500 hover:text-gray-700' />
+    </button>
+  </div>
 </div>

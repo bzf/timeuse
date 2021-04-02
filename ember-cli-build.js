@@ -9,7 +9,18 @@ module.exports = function (defaults) {
     postcssOptions: {
       compile: {
         enabled: true,
-        plugins: [{ module: tailwindcss }],
+        plugins: [
+          {
+            module: tailwindcss,
+            options: {
+              variants: {
+                extend: {
+                  visibility: ['group-hover'],
+                },
+              },
+            },
+          },
+        ],
       },
 
       filter: {

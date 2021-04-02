@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { action } from '@ember/object';
 import moment from 'moment';
 
 import DailyTimers from 'timeuse/models/daily-timers';
@@ -27,5 +28,11 @@ export default class extends Controller {
     return Object.keys(groupedTimers).map(
       (key) => new DailyTimers(key, groupedTimers[key])
     );
+  }
+
+  @action
+  async deleteTimer(timer) {
+    this.model = this.model.rejectBy('id', timer.id);
+    await timer.destroyRecord();
   }
 }
