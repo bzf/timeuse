@@ -34,6 +34,8 @@
     "@supabase/supabase-js": "^1.7.5",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
+    "ember-animated": "^0.10.1",
+    "ember-animated-tools": "^0.4.1",
     "ember-auto-import": "^1.10.1",
     "ember-cli": "~3.25.2",
     "ember-cli-app-version": "^4.0.0",
