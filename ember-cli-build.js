@@ -3,6 +3,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const autoprefixer = require('autoprefixer');
 const tailwindcss = require('tailwindcss');
+const colors = require('tailwindcss/colors');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -13,6 +14,14 @@ module.exports = function (defaults) {
           {
             module: tailwindcss,
             options: {
+              theme: {
+                extend: {
+                  colors: {
+                    primary: colors.pink['500'],
+                  },
+                },
+              },
+
               variants: {
                 extend: {
                   visibility: ['group-hover'],
