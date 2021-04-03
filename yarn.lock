@@ -3365,6 +3365,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
+  integrity sha1-eAqZyE59YAJgNhURxId2E78k9rs=
+
 base64-arraybuffer@0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/base64-arraybuffer/-/base64-arraybuffer-0.1.4.tgz#9818c79e059b1355f97e0428a017c838e90ba812"
@@ -3704,7 +3709,7 @@ broccoli-file-creator@^1.1.1:
     broccoli-plugin "^1.1.0"
     mkdirp "^0.5.1"
 
-broccoli-file-creator@^2.1.1:
+broccoli-file-creator@^2.0.0, broccoli-file-creator@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/broccoli-file-creator/-/broccoli-file-creator-2.1.1.tgz#7351dd2496c762cfce7736ce9b49e3fce0c7b7db"
   integrity sha512-YpjOExWr92C5vhnK0kmD81kM7U09kdIRZk9w4ZDCDHuHXW+VE/x6AGEOQQW3loBQQ6Jk+k+TSm8dESy4uZsnjw==
@@ -3771,7 +3776,7 @@ broccoli-funnel@^1.0.1:
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
 
-broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
+"broccoli-funnel@^1.2.0 || ^2.0.0", broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-2.0.2.tgz#0edf629569bc10bd02cc525f74b9a38e71366a75"
   integrity sha512-/vDTqtv7ipjEZQOVqO4vGDVAOZyuYzQ/EgGoyewfOgh1M7IQAToBKZI0oAQPgMBeFPPlIbfMuAngk+ohPBuaHQ==
@@ -3844,7 +3849,7 @@ broccoli-merge-trees@^2.0.0:
     broccoli-plugin "^1.3.0"
     merge-trees "^1.0.1"
 
-broccoli-merge-trees@^3.0.1, broccoli-merge-trees@^3.0.2:
+"broccoli-merge-trees@^2.0.0 || ^3.0.0", broccoli-merge-trees@^3.0.1, broccoli-merge-trees@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/broccoli-merge-trees/-/broccoli-merge-trees-3.0.2.tgz#f33b451994225522b5c9bcf27d59decfd8ba537d"
   integrity sha512-ZyPAwrOdlCddduFbsMyyFzJUrvW6b04pMvDiAQZrCwghlvgowJDY+EfoXn+eR1RRA5nmGHJ+B68T63VnpRiT1A==
@@ -5779,7 +5784,7 @@ ember-cli-valid-component-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
-ember-cli-version-checker@^2.1.2:
+ember-cli-version-checker@^2.1.0, ember-cli-version-checker@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-2.2.0.tgz#47771b731fe0962705e27c8199a9e3825709f3b3"
   integrity sha512-G+KtYIVlSOWGcNaTFHk76xR4GdzDLzAS4uxZUKdASuFX0KJE43C6DaqL+y3VTpUFLI2FIkAS6HZ4I1YBi+S3hg==
@@ -5950,6 +5955,14 @@ ember-concurrency@^2.0.3:
     ember-compatibility-helpers "^1.2.0"
     ember-destroyable-polyfill "^2.0.2"
 
+ember-cookies@^0.5.0:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/ember-cookies/-/ember-cookies-0.5.2.tgz#06e33463f2f83254fefaf224cc944dec3fb9d3ba"
+  integrity sha512-nZ7oG97kBcO9UHjO95ryABpnVx62Bhxo7lIsBJNmWvFXleILm9DGueiAynzXxuYWWPuKIeeSbYakrS1869tNTw==
+  dependencies:
+    ember-cli-babel "^7.1.0"
+    ember-getowner-polyfill "^1.1.0 || ^2.0.0"
+
 ember-data@~3.25.0:
   version "3.25.0"
   resolved "https://registry.yarnpkg.com/ember-data/-/ember-data-3.25.0.tgz#fe9bbff26563aa61dfc4430f61c16141e5d57d30"
@@ -6001,6 +6014,13 @@ ember-export-application-global@^2.0.1:
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.1.tgz#b120a70e322ab208defc9e2daebe8d0dfc2dcd46"
   integrity sha512-B7wiurPgsxsSGzJuPFkpBWnaeuCu2PGpG2BjyrfA1VcL7//o+5RSnZqiCEY326y7qmxb2GoCgo0ft03KBU0rRw==
 
+ember-factory-for-polyfill@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/ember-factory-for-polyfill/-/ember-factory-for-polyfill-1.3.1.tgz#b446ed64916d293c847a4955240eb2c993b86eae"
+  integrity sha512-y3iG2iCzH96lZMTWQw6LWNLAfOmDC4pXKbZP6FxG8lt7GGaNFkZjwsf+Z5GAe7kxfD7UG4lVkF7x37K82rySGA==
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+
 ember-fetch@^8.0.4:
   version "8.0.4"
   resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-8.0.4.tgz#b9a3239e9d188ada18a4448ccb4fea2a091e3952"
@@ -6027,6 +6047,14 @@ ember-get-config@^0.3.0:
   dependencies:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^7.0.0"
+
+"ember-getowner-polyfill@^1.1.0 || ^2.0.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ember-getowner-polyfill/-/ember-getowner-polyfill-2.2.0.tgz#38e7dccbcac69d5ec694000329ec0b2be651d2b2"
+  integrity sha512-rwGMJgbGzxIAiWYjdpAh04Abvt0s3HuS/VjHzUFhVyVg2pzAuz45B9AzOxYXzkp88vFC7FPaiA4kE8NxNk4A4Q==
+  dependencies:
+    ember-cli-version-checker "^2.1.0"
+    ember-factory-for-polyfill "^1.3.1"
 
 ember-inflector@^4.0.1:
   version "4.0.1"
@@ -6139,6 +6167,20 @@ ember-router-generator@^2.0.0:
     "@babel/parser" "^7.4.5"
     "@babel/traverse" "^7.4.5"
     recast "^0.18.1"
+
+ember-simple-auth@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-simple-auth/-/ember-simple-auth-3.1.0.tgz#e8abe27f6c3c44f46ebacace57364e82223bab9a"
+  integrity sha512-JS8NtYAlSftkoQh36Kxps6iLHTP/InIgKt8w21QBHCTqDx07af4aka59GojaBvc+8GubQuGKldk6vvw3R8bwxA==
+  dependencies:
+    base-64 "^0.1.0"
+    broccoli-file-creator "^2.0.0"
+    broccoli-funnel "^1.2.0 || ^2.0.0"
+    broccoli-merge-trees "^2.0.0 || ^3.0.0"
+    ember-cli-babel "^7.20.5"
+    ember-cli-is-package-missing "^1.0.0"
+    ember-cookies "^0.5.0"
+    silent-error "^1.0.0"
 
 ember-source-channel-url@^3.0.0:
   version "3.0.0"
