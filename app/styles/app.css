@@ -5,3 +5,7 @@
 .sign-in-form {
   width: 480px;
 }
+
+.authenticated {
+  background: #f9f9f9;
+}
