@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { isEmpty } from '@ember/utils';
 
 export default class ApplicationSerializer extends Serializer {
-  @service supabase;
+  @service session;
 
   normalizeResponse(store, primaryModelClass, payload, id, requestType) {
     if (requestType === 'findRecord') {
@@ -41,7 +41,7 @@ export default class ApplicationSerializer extends Serializer {
       }
     });
 
-    json.user_id = this.supabase.currentUser.id;
+    json.user_id = this.session.data.authenticated.user.id;
 
     if (isEmpty(json.id)) {
       delete json.id;

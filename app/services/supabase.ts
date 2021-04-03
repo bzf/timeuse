@@ -1,41 +1,18 @@
-import Service from '@ember/service';
-import { isPresent } from '@ember/utils';
+import Service, { inject as service } from '@ember/service';
 import ENV from 'timeuse/config/environment';
+import SessionService from 'ember-simple-auth/services/base';
 
-import {
-  SupabaseClient,
-  User,
-  Session,
-  createClient,
-} from '@supabase/supabase-js';
-import { tracked } from '@glimmer/tracking';
+import { SupabaseClient, createClient } from '@supabase/supabase-js';
 
 export default class SupabaseService extends Service {
   client: SupabaseClient;
 
-  @tracked currentUser: User | null;
-  @tracked currentSession: Session | null;
+  @service declare session: SessionService;
 
   constructor() {
-    super();
+    super(...arguments);
 
     this.client = createClient(ENV.supabaseUrl, ENV.supabaseKey);
-    this.currentUser = this.client.auth.user();
-    this.currentSession = this.client.auth.session();
-  }
-
-  async authenticate(email: string, password: string) {
-    const { user, session, error } = await this.client.auth.signIn({
-      email,
-      password,
-    });
-
-    if (user && session) {
-      this.currentUser = user;
-      this.currentSession = session;
-    } else if (error) {
-      throw new Error(error.message);
-    }
   }
 
   async register(email: string, password: string) {
@@ -45,21 +22,10 @@ export default class SupabaseService extends Service {
     });
 
     if (user && session) {
-      this.currentUser = user;
-      this.currentSession = session;
+      return;
     } else if (error) {
       throw new Error(error.message);
     }
-  }
-
-  async invalidate() {
-    await this.client.auth.signOut();
-    this.currentUser = null;
-    this.currentSession = null;
-  }
-
-  get isAuthenticated() {
-    return isPresent(this.currentUser);
   }
 }
 

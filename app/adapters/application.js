@@ -3,7 +3,7 @@ import ENV from 'timeuse/config/environment';
 import RESTAdapter from '@ember-data/adapter/rest';
 
 export default class ApplicationAdapter extends RESTAdapter {
-  @service supabase;
+  @service session;
 
   namespace = 'rest/v1';
   host = ENV.supabaseUrl;
@@ -30,10 +30,10 @@ export default class ApplicationAdapter extends RESTAdapter {
   }
 
   get headers() {
-    if (this.supabase.isAuthenticated) {
+    if (this.session.isAuthenticated) {
       return {
         apikey: ENV.supabaseKey,
-        Authorization: `Bearer ${this.supabase.currentSession.access_token}`,
+        Authorization: `Bearer ${this.session.data.authenticated.access_token}`,
         'Content-Type': 'application/json',
         prefer: 'return=representation',
       };
