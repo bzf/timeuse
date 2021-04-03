@@ -1,14 +1,20 @@
 <div class='sign-in-form mx-auto mt-12 mb-24 pt-24'>
   <div class='mb-6'>
-    <span class='hidden'>
-      Start for free
-    </span>
-
     <h2 class='text-4xl font-semibold mb-6'>
-      Sign in to your account
+      Create an account
     </h2>
 
-    <form {{on 'submit' this.signIn}}>
+    {{#if this.errorMessage}}
+      <div class='mb-6 bg-red-100 rounded-lg py-3 px-4'>
+        <FaIcon @icon='exclamation-circle' class='mr-2 text-red-700' />
+
+        <span class='text-red-700'>
+          {{this.errorMessage}}
+        </span>
+      </div>
+    {{/if}}
+
+    <form {{on 'submit' this.signUp}}>
       <div class='flex flex-col mb-4'>
         <label for='email' class='uppercase font-semibold text-xs mb-1'>
           Email
@@ -38,18 +44,18 @@
       <Input
         @type='submit'
         class='w-full text-lg py-3 cursor-pointer rounded font-medium bg-black text-white'
-        @value='Sign in'
+        @value='Sign up'
       />
     </form>
   </div>
 
   <div class='text-sm text-gray-800 text-center'>
     <span>
-      Don't have an account yet?
+      Already have an account?
     </span>
 
-    <LinkTo class='underline text-primary' @route='register'>
-      Sign up
+    <LinkTo class='underline text-primary' @route='sign-in'>
+      Sign in
     </LinkTo>
   </div>
 </div>

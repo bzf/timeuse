@@ -36,6 +36,20 @@ export default class SupabaseService extends Service {
     return response;
   }
 
+  async register(email: string, password: string) {
+    const { session, user, error } = await this.client.auth.signUp({
+      email,
+      password,
+    });
+
+    if (user && session) {
+      this.currentUser = user;
+      this.currentSession = session;
+    } else if (error) {
+      throw new Error(error.message);
+    }
+  }
+
   async invalidate() {
     await this.client.auth.signOut();
     this.currentUser = null;

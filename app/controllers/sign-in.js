@@ -14,6 +14,6 @@ export default class extends Controller {
     event.preventDefault();
 
     await this.supabase.authenticate(this.email, this.password);
-    this.transitionToRoute('authenticated.dashboard');
+    this.transitionToRoute('dashboard');
   }
 }
