@@ -21,7 +21,8 @@ export default class extends Controller {
 
   @action
   async stopTimer() {
-    const stoppedTimer = await this.timerService.stop();
+    const stoppedTimer = this.timerService.currentTimer;
+    await this.timerService.stop();
 
     const dailyTimer = this.model.findBy(
       'date',
