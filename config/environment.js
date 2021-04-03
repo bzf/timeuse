@@ -6,10 +6,16 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseKey: process.env.SUPABASE_KEY,
+
     emberKeyboard: {
       disableInputsInitializer: true,
+    },
+
+    ['ember-cli-mirage']: {
+      enabled: environment === 'test',
     },
 
     EmberENV: {
