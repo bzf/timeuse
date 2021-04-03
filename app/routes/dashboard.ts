@@ -26,7 +26,7 @@ export default class DashboardRoute extends Route {
     }, {});
 
     return {
-      projects,
+      projects: projects.toArray(),
       dailyTimers: Object.keys(groupedTimers).map(
         (key) => new DailyTimers(key, groupedTimers[key])
       ),

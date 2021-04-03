@@ -4,6 +4,9 @@
   @onStart={{this.startTimer}}
   @onStop={{this.stopTimer}}
   @onSave={{this.saveTimer}}
+  @projects={{this.model.projects}}
+  @onSelect={{queue (fn (mut this.currentTimer.project)) this.saveTimer}}
+  @selectedProject={{this.currentTimer.project.content}}
 />
 
 {{#each this.model.dailyTimers as |dailyTimer|}}

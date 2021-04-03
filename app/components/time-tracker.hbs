@@ -9,6 +9,51 @@
         {{on 'blur' @onSave}}
       />
 
+      <div class='mr-6'>
+        <div class='relative inline-block text-left'>
+          <div>
+            {{#if @selectedProject}}
+              <button
+                type='button'
+                class='bg-pink-100 hover:bg-pink-200 text-pink-800 rounded whitespace-nowrap px-3 py-2 text-xs flex'
+                {{on 'click' this.openProjectPicker}}
+              >
+                {{@selectedProject.name}}
+              </button>
+            {{else}}
+              <button
+                type='button'
+                class='h-8 w-8 rounded-full hover:bg-gray-100'
+                {{on 'click' this.openProjectPicker}}
+              >
+                <FaIcon @icon='folder' class='text-gray-600' />
+              </button>
+            {{/if}}
+          </div>
+
+          {{#if this.showProjectPicker}}
+            <button
+              type='button'
+              class='h-screen w-screen top-0 left-0 fixed z-10 cursor-default'
+              {{on 'click' this.closeProjectPicker}}
+            ></button>
+
+            <div
+              class='origin-top-right absolute right-0 mt-2 w-64 z-20'
+              role='menu'
+              aria-orientation='vertical'
+              aria-labelledby='options-menu'
+            >
+              <ProjectPicker
+                @projects={{@projects}}
+                @onSelect={{queue @onSelect this.closeProjectPicker}}
+                @selectedProject={{@selectedProject}}
+              />
+            </div>
+          {{/if}}
+        </div>
+      </div>
+
       {{#if @currentTimer.isRunning}}
         <span
           class='font-light tabular-nums uppercase text-gray-700 text-md tracking-tighter font-semibold'

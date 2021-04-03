@@ -1,11 +1,14 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { AsyncBelongsTo, attr, belongsTo } from '@ember-data/model';
 import { isEmpty, isPresent } from '@ember/utils';
 import moment from 'moment';
+import ProjectModel from 'timeuse/models/project';
 
 export default class TimerModel extends Model {
   @attr title?: string;
   @attr('moment') declare startTimestamp: moment.Moment;
   @attr('moment') endTimestamp?: moment.Moment;
+
+  @belongsTo('project') project?: AsyncBelongsTo<ProjectModel>;
 
   get isRunning() {
     return isPresent(this.startTimestamp) && isEmpty(this.endTimestamp);
