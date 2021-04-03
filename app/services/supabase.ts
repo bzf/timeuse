@@ -25,15 +25,17 @@ export default class SupabaseService extends Service {
   }
 
   async authenticate(email: string, password: string) {
-    const response = await this.client.auth.signIn({
+    const { user, session, error } = await this.client.auth.signIn({
       email,
       password,
     });
 
-    this.currentUser = response.user;
-    this.currentSession = response.session;
-
-    return response;
+    if (user && session) {
+      this.currentUser = user;
+      this.currentSession = session;
+    } else if (error) {
+      throw new Error(error.message);
+    }
   }
 
   async register(email: string, password: string) {

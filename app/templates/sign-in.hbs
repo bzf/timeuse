@@ -1,12 +1,18 @@
 <div class='sign-in-form mx-auto mt-12 mb-24 pt-24'>
   <div class='mb-6'>
-    <span class='hidden'>
-      Start for free
-    </span>
-
     <h2 class='text-4xl font-semibold mb-6'>
       Sign in to your account
     </h2>
+
+    {{#if this.errorMessage}}
+      <div class='mb-6 bg-yellow-100 text-yellow-600 rounded-lg py-3 px-4'>
+        <FaIcon @icon='exclamation-circle' class='mr-2' />
+
+        <span>
+          {{this.errorMessage}}
+        </span>
+      </div>
+    {{/if}}
 
     <form {{on 'submit' this.signIn}}>
       <div class='flex flex-col mb-4'>
