@@ -9,6 +9,7 @@ module.exports = function () {
       'exclamation-circle',
       'check',
       'sign-out-alt',
+      'search',
     ],
   };
 };

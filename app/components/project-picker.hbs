@@ -1,19 +1,31 @@
 <div
   ...attributes
-  class='mb-4 w-64 mx-auto'
+  class='mb-4 w-64 mx-auto bg-white border rounded py-3'
   {{on-key 'j' this.increaseIndex}}
   {{on-key 'k' this.decreaseIndex}}
   {{on-key 'Enter' (fn (optional @onSelect) this.selectedProject)}}
   {{on 'mouseleave' this.resetIndex}}
 >
-  <div class='px-2 bg-white border rounded flex flex-col py-3'>
+  <div class='px-4 border-b pb-3 mb-3 flex items-center'>
+    <FaIcon @icon='search' class='mr-2 text-gray-300' />
+
+    <Input
+      class='flex-1 text-sm outline-none'
+      @placeholder='Search project'
+      @value={{this.filter}}
+      {{on 'input' this.resetIndex}}
+      {{did-insert this.focusInput}}
+    />
+  </div>
+
+  <div class='px-2 flex flex-col'>
     <div
       class='uppercase text-xs text-gray-400 font-semibold py-1 px-2 mb-1 tracking-tight'
     >
       Projects
     </div>
 
-    {{#each @projects as |project index|}}
+    {{#each this.filteredProjects as |project index|}}
       <button
         type='button'
         data-test-project-item
