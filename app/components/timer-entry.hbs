@@ -1,13 +1,21 @@
 <div class='group px-6 hover:bg-gray-100 py-3 text-sm font-light flex'>
-  {{#if (is-present @timer.title)}}
-    <span data-test-timer-title class='flex-1'>
-      {{@timer.title}}
+  <div class='flex-1 flex items-center'>
+    <span
+      data-test-timer-title
+      class='mr-4 {{if @timer.title '' 'text-gray-400'}}'
+    >
+      {{or @timer.title 'No description'}}
     </span>
-  {{else}}
-    <span data-test-timer-title class='flex-1 text-gray-400'>
-      No description
-    </span>
-  {{/if}}
+
+    {{#if @timer.project}}
+      <span
+        data-test-project-name
+        class='block bg-pink-100 text-pink-800 rounded whitespace-nowrap px-2 py-1 text-xs flex mr-6'
+      >
+        {{@timer.project.name}}
+      </span>
+    {{/if}}
+  </div>
 
   <span data-test-timestamp class='tabular-nums mr-8'>
     {{format-timestamp @timer.startTimestamp}} - {{format-timestamp

@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { click, render } from '@ember/test-helpers';
+import { click, findAll, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | timer-entry', function (hooks) {
@@ -16,6 +16,23 @@ module('Integration | Component | timer-entry', function (hooks) {
 
     this.set('timer.title', 'my new title');
     assert.dom('[data-test-timer-title]').hasText('my new title');
+  });
+
+  test('renders the project if any', async function (assert) {
+    const project = this.owner
+      .lookup('service:store')
+      .createRecord('project', { name: 'my-name' });
+
+    const timer = this.owner.lookup('service:store').createRecord('timer');
+    this.set('timer', timer);
+
+    await render(hbs`<TimerEntry @timer={{this.timer}} />`);
+
+    const elements = findAll('[data-test-project-name]');
+    assert.equal(elements.length, 0, 'No project shown');
+
+    this.set('timer.project', project);
+    assert.dom('[data-test-project-name]').hasText(project.name);
   });
 
   test('renders the duration', async function (assert) {
