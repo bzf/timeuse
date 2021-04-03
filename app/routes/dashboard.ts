@@ -5,8 +5,9 @@ import RSVP from 'rsvp';
 
 export default class DashboardRoute extends Route {
   async model() {
-    const { timers } = await RSVP.hash({
+    const { timers, projects } = await RSVP.hash({
       timers: this.store.findAll('timer'),
+      projects: this.store.findAll('project'),
     });
 
     const filteredTimers = timers
@@ -25,6 +26,7 @@ export default class DashboardRoute extends Route {
     }, {});
 
     return {
+      projects,
       dailyTimers: Object.keys(groupedTimers).map(
         (key) => new DailyTimers(key, groupedTimers[key])
       ),
