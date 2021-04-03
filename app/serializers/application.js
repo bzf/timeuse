@@ -35,7 +35,7 @@ export default class ApplicationSerializer extends Serializer {
 
     snapshot.eachRelationship((key, relationship) => {
       if (relationship.kind === 'belongsTo') {
-        json[key] = snapshot.belongsTo(key, { id: true });
+        json[`${key}_id`] = snapshot.belongsTo(key, { id: true });
       } else if (relationship.kind === 'hasMany') {
         json[key] = snapshot.hasMany(key, { ids: true });
       }
@@ -53,15 +53,33 @@ export default class ApplicationSerializer extends Serializer {
   }
 
   normalize(modelClass, resourceHash) {
-    const attributes = Object.keys(resourceHash).reduce(
-      (attrs, key) => ({ ...attrs, [camelize(key)]: resourceHash[key] }),
-      {}
-    );
+    const attributes = Object.keys(resourceHash).reduce((attrs, key) => {
+      return { ...attrs, [camelize(key)]: resourceHash[key] };
+    }, {});
+
+    const relationships = Object.keys(resourceHash)
+      .map((a) => a.match(/^([a-z]+)_id$/i))
+      .reject(isEmpty)
+      .map((a) => a[1])
+      .reject((a) => isEmpty(resourceHash[`${a}_id`]))
+      .reduce(
+        (attrs, type) => ({
+          ...attrs,
+          [type]: {
+            data: {
+              id: resourceHash[`${type}_id`],
+              type,
+            },
+          },
+        }),
+        {}
+      );
 
     const data = {
       id: '' + resourceHash.id,
       type: modelClass.modelName,
       attributes,
+      relationships,
     };
 
     return { data, included: [] };
