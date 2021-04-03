@@ -2,14 +2,19 @@ import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 import ENV from 'timeuse/config/environment';
 
-import { createClient } from '@supabase/supabase-js';
+import {
+  SupabaseClient,
+  User,
+  Session,
+  createClient,
+} from '@supabase/supabase-js';
 import { tracked } from '@glimmer/tracking';
 
 export default class SupabaseService extends Service {
-  client = null;
+  client: SupabaseClient;
 
-  @tracked currentUser = null;
-  @tracked currentSession = null;
+  @tracked currentUser: User | null;
+  @tracked currentSession: Session | null;
 
   constructor() {
     super();
@@ -19,7 +24,7 @@ export default class SupabaseService extends Service {
     this.currentSession = this.client.auth.session();
   }
 
-  async authenticate(email, password) {
+  async authenticate(email: string, password: string) {
     const response = await this.client.auth.signIn({
       email,
       password,
@@ -39,5 +44,11 @@ export default class SupabaseService extends Service {
 
   get isAuthenticated() {
     return isPresent(this.currentUser);
+  }
+}
+
+declare module '@ember/service' {
+  interface Registry {
+    supabase: SupabaseService;
   }
 }
