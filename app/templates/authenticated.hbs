@@ -1,17 +1,43 @@
-<div class='authenticated h-screen overflow-y-scroll'>
-  <div class='bg-gray-700 py-2 px-3 flex justify-end items-center'>
-    <span class='text-gray-100 text-xs mr-3'>
-      Signed in as
+<div class='authenticated h-screen overflow-y-scroll flex'>
+  <div class='sidebar bg-pink-700 h-full w-64 flex justify-between flex-col'>
+    <div>
+      <h1 class='text-3xl font-bold py-4 px-4 text-pink-100'>
+        timeuse
+      </h1>
 
-      <span class='font-semibold'>
-        {{this.supabase.currentUser.email}}
+      <div class='mx-2'>
+        <LinkTo
+          @route='dashboard'
+          class='flex-1 block px-2 py-1 text-pink-100 rounded text-sm flex justify-between'
+        >
+          <span>
+            <FaIcon @icon='clock' class='mr-1 text-pink-200' />
+            Timer
+          </span>
+
+          <span>
+            {{format-duration this.currentTimer.currentDuration}}
+          </span>
+        </LinkTo>
+      </div>
+    </div>
+
+    <div class='bg-pink-800 py-4 px-5 flex justify-between items-center'>
+      <span class='text-gray-100 text-xs mr-3'>
+        Signed in as
+
+        <span class='font-semibold'>
+          {{this.supabase.currentUser.email}}
+        </span>
       </span>
-    </span>
 
-    <button type='button' class='text-gray-200' {{on 'click' this.signOut}}>
-      <FaIcon @icon='sign-out-alt' @size='sm' />
-    </button>
+      <button type='button' class='text-gray-200' {{on 'click' this.signOut}}>
+        <FaIcon @icon='sign-out-alt' @size='sm' />
+      </button>
+    </div>
   </div>
 
-  {{outlet}}
+  <div class='flex-1 overflow-y-scroll'>
+    {{outlet}}
+  </div>
 </div>

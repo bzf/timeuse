@@ -10,6 +10,7 @@ module.exports = function () {
       'check',
       'sign-out-alt',
       'search',
+      'clock',
     ],
   };
 };

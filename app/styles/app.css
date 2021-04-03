@@ -9,3 +9,7 @@
 .authenticated {
   background: #f9f9f9;
 }
+
+.sidebar .active {
+  @apply bg-pink-800;
+}
