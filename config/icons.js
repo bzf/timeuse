@@ -8,6 +8,7 @@ module.exports = function () {
       'trash',
       'exclamation-circle',
       'check',
+      'sign-out-alt',
     ],
   };
 };

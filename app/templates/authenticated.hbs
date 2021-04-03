@@ -1,17 +1,17 @@
 <div class='bg-gray-200 h-screen overflow-y-scroll'>
-  <div class='bg-gray-700 py-2 px-3 flex justify-end'>
-    <span class='text-gray-100 text-xs'>
+  <div class='bg-gray-700 py-2 px-3 flex justify-end items-center'>
+    <span class='text-gray-100 text-xs mr-3'>
       Signed in as
 
       <span class='font-semibold'>
         {{this.supabase.currentUser.email}}
       </span>
     </span>
+
+    <button type='button' class='text-gray-200' {{on 'click' this.signOut}}>
+      <FaIcon @icon='sign-out-alt' @size='sm' />
+    </button>
   </div>
 
   {{outlet}}
-
-  <button type='button' {{on 'click' this.signOut}}>
-    Sign out
-  </button>
 </div>

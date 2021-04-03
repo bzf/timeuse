@@ -8,6 +8,7 @@ export default class extends Controller {
   @action
   async signOut() {
     await this.supabase.invalidate();
+    this.store.unloadAll();
     this.transitionToRoute('sign-in');
   }
 }
