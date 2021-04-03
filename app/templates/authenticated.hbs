@@ -1,4 +1,14 @@
 <div class='bg-gray-100 h-screen overflow-y-scroll'>
+  <div class='bg-gray-700 py-2 px-3 flex justify-end'>
+    <span class='text-gray-100 text-xs'>
+      Signed in as
+
+      <span class='font-semibold'>
+        {{this.supabase.currentUser.email}}
+      </span>
+    </span>
+  </div>
+
   {{outlet}}
 
   <button type='button' {{on 'click' this.signOut}}>
