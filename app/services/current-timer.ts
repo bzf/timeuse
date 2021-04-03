@@ -47,7 +47,7 @@ export default class CurrentTimerService extends Service {
   }
 
   async save() {
-    if (this.currentTimer) {
+    if (this.currentTimer && !this.currentTimer.isNew) {
       await this.currentTimer.save();
     }
   }
