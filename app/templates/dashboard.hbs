@@ -6,6 +6,6 @@
   @onSave={{this.saveTimer}}
 />
 
-{{#each this.model as |dailyTimer|}}
+{{#each this.model.dailyTimers as |dailyTimer|}}
   <DailyTimers @dailyTimer={{dailyTimer}} @onDelete={{this.deleteTimer}} />
 {{/each}}
