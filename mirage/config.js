@@ -5,7 +5,6 @@ export default function () {
   this.urlPrefix = ENV.supabaseUrl;
 
   this.get('/timers?select=*', (schema) => {
-    console.log(schema.timers.all());
     return schema.timers.all();
   });
   this.get('/timers', (schema) => schema.timers.all());

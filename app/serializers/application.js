@@ -12,7 +12,7 @@ export default class ApplicationSerializer extends Serializer {
     } else if (requestType === 'createRecord') {
       return this.normalize(primaryModelClass, payload.firstObject);
     } else if (requestType === 'query' || requestType === 'findAll') {
-      return payload.data.reduce(
+      return payload.reduce(
         (documentHash, item) => {
           let { data, included } = this.normalize(primaryModelClass, item);
           documentHash.included.push(...included);
